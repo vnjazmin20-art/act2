@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Activity 2 - Search for a Value</title>
+    <title>Search for a Value</title>
 </head>
 <body>
 
-<h2> Search for a Value</h2>
+    <h1>Search for a Value</h1>
 
-<script>
+    <label>Enter array values (separated by commas):</label><br>
+    <input type="text" id="arrayValues" value="1, 2, 3">
 
-let numbers = [];
-let size = parseInt(prompt("Enter the number of elements:"));
+    <br><br>
 
-for (let i = 0; i < size; i++) {
-    numbers[i] = parseInt(prompt("Enter value " + (i + 1) + ":"));
-}
+    <label>Enter value to search:</label><br>
+    <input type="text" id="searchValue" value="3">
 
-let searchValue = parseInt(prompt("Enter the value to search:"));
+    <br><br>
 
-let found = false;
+    <button onclick="searchValue()">Search</button>
 
-document.write("<h3>Entered Array</h3>");
+    <h2>Result:</h2>
+    <p id="result"></p>
 
-for (let i = 0; i < numbers.length; i++) {
-    document.write("Index " + i + ": " + numbers[i] + "<br>");
-}
+    <script>
 
-for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] === searchValue) {
-        document.write("<br>Value " + searchValue + " found at index " + i + ".");
-        found = true;
-    }
-}
+        function searchValue() {
 
-if (found === false) {
-    document.write("<br>Value " + searchValue + " does not exist in the array.");
-}
+            let input = document.getElementById("arrayValues").value;
+            let search = document.getElementById("searchValue").value;
 
-</script>
+            let numbers = input.split(",");
+
+            let found = false;
+
+            for (let i = 0; i < numbers.length; i++) {
+
+                if (numbers[i].trim() === search.trim()) {
+
+                    document.getElementById("result").innerHTML =
+                        'Value "' + search + '" found at index ' + i + '.';
+
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found === false) {
+
+                document.getElementById("result").innerHTML =
+                    'Value "' + search + '" does not exist in the array.';
+
+            }
+        }
+
+    </script>
 
 </body>
 </html>
