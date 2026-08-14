@@ -7,52 +7,50 @@
 
     <h1>Search for a Value</h1>
 
-    <label>Enter array values (separated by commas):</label><br>
-    <input type="text" id="arrayValues" value="1, 2, 3">
+    <label>Enter array values (separated by commas):</label>
+    <br>
+    <input type="text" id="arrayInput" value="1, 2, 3">
 
     <br><br>
 
-    <label>Enter value to search:</label><br>
+    <label>Enter value to search:</label>
+    <br>
     <input type="text" id="searchValue" value="3">
 
     <br><br>
 
-    <button onclick="searchValue()">Search</button>
+    <button onclick="searchArray()">Search</button>
 
     <h2>Result:</h2>
+
     <p id="result"></p>
 
     <script>
+        function searchArray() {
 
-        function searchValue() {
+            let input = document.getElementById("arrayInput").value;
+            let searchValue = document.getElementById("searchValue").value;
 
-            let input = document.getElementById("arrayValues").value;
-            let search = document.getElementById("searchValue").value;
-
-            let numbers = input.split(",");
-
+            let array = input.split(",");
             let found = false;
 
-            for (let i = 0; i < numbers.length; i++) {
+            for (let i = 0; i < array.length; i++) {
 
-                if (numbers[i].trim() === search.trim()) {
+                if (array[i].trim() == searchValue.trim()) {
 
                     document.getElementById("result").innerHTML =
-                        'Value "' + search + '" found at index ' + i + '.';
+                        'Value "' + searchValue + '" found at index ' + i + '.';
 
                     found = true;
                     break;
                 }
             }
 
-            if (found === false) {
-
+            if (found == false) {
                 document.getElementById("result").innerHTML =
-                    'Value "' + search + '" does not exist in the array.';
-
+                    'Value "' + searchValue + '" does not exist in the array.';
             }
         }
-
     </script>
 
 </body>
