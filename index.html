@@ -31,22 +31,34 @@
             let input = document.getElementById("arrayInput").value;
             let searchValue = document.getElementById("searchValue").value;
 
-            let array = input.split(",");
+            let currentItem = "";
+            let index = 0;
             let found = false;
 
-            for (let i = 0; i < array.length; i++) {
+            // Adding a trailing comma ensures the last value in the string is evaluated
+            let fullString = input + ",";
 
-                if (array[i].trim() == searchValue.trim()) {
+            for (let i = 0; i < fullString.length; i++) {
 
-                    document.getElementById("result").innerHTML =
-                        'Value "' + searchValue + '" found at index ' + i + '.';
+                if (fullString[i] === ",") {
 
-                    found = true;
-                    break;
+                    if (currentItem.trim() === searchValue.trim()) {
+                        document.getElementById("result").innerHTML =
+                            'Value "' + searchValue + '" found at index ' + index + '.';
+
+                        found = true;
+                        break;
+                    }
+
+                    currentItem = "";
+                    index++;
+
+                } else {
+                    currentItem += fullString[i];
                 }
             }
 
-            if (found == false) {
+            if (found === false) {
                 document.getElementById("result").innerHTML =
                     'Value "' + searchValue + '" does not exist in the array.';
             }
